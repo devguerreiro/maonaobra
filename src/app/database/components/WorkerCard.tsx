@@ -35,7 +35,7 @@ export default function WorkerCard({ worker }: Readonly<Props>) {
           <p>{worker.Cidade}</p>
         </div>
         {worker["Recomendado por"] && (
-          <div className="flex items-center gap-2">
+          <div className="w-full flex justify-between items-center gap-2">
             <span>Recomendado por - {worker["Recomendado por"]}</span>
             <ShieldCheck className="text-green-500" />
           </div>
