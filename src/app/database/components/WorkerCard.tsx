@@ -26,6 +26,8 @@ export default function WorkerCard({ worker }: Readonly<Props>) {
     return "paintbrush";
   }
 
+  const workerNumber = worker.Contato.toString().replace(/\D/g, "");
+
   return (
     <div className="bg-secondary rounded shadow p-4 flex flex-col justify-between gap-6">
       <div className="relative space-y-2">
@@ -48,7 +50,7 @@ export default function WorkerCard({ worker }: Readonly<Props>) {
       </div>
       <div className="mt-auto">
         <a
-          href="https://wa.me/47991430377?text=Olá! Gostaria de contratá-lo"
+          href={`https://wa.me/${workerNumber}?text=Olá! Gostaria de contratá-lo`}
           className={cn(buttonVariants(), "w-full py-6 text-lg")}
           target="_blank"
         >
