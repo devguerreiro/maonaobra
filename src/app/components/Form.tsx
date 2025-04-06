@@ -28,9 +28,10 @@ type FormSchema = z.infer<typeof formSchema>;
 
 type Props = {
   jobs: Array<string>;
+  onSubmit: (values: FormSchema) => void;
 };
 
-export default function Form({ jobs }: Readonly<Props>) {
+export default function Form({ jobs, onSubmit }: Readonly<Props>) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,7 +40,7 @@ export default function Form({ jobs }: Readonly<Props>) {
   });
 
   function handleSubmit(values: FormSchema) {
-    console.log(values);
+    onSubmit(values);
   }
 
   return (
