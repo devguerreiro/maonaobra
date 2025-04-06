@@ -41,7 +41,7 @@ export default function useUniqueJobs() {
   useEffect(() => {
     setIsFetching(true);
 
-    fetch("api/workers").then(async (response) => {
+    fetch("api/workers", { cache: "force-cache" }).then(async (response) => {
       if (response.ok) {
         const data = (await response.json()) as Data;
 

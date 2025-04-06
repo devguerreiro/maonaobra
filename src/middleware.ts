@@ -15,10 +15,8 @@ type Data = {
 export async function middleware(request: NextRequest) {
   const params = request.nextUrl.searchParams;
 
-  if (params.size > 1) return NextResponse.next();
-
   const response = await fetch(process.env.GOOGLE_SHEET_ENGINEERS_URL, {
-    method: "GET",
+    cache: "force-cache",
   });
   if (response.ok) {
     const data = (await response.json()) as Data;
