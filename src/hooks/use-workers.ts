@@ -31,7 +31,7 @@ export default function useUniqueJobs() {
         searchParams
           .entries()
           // @ts-expect-error dynamic filter
-          .every(([key, value]) => worker[key] === value)
+          .every(([key, value]) => key === "token" || worker[key] === value)
       );
     });
 
