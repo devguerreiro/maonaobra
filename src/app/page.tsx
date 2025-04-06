@@ -20,7 +20,7 @@ export default function Page() {
           </p>
         </div>
         <a
-          href="https://wa.me/47991430377?text=Preciso de mão de obra"
+          href="https://wa.me/47991430377?text=Olá! Preciso de mão de obra"
           className={cn(
             buttonVariants(),
             "w-full py-6 text-lg lg:w-80 lg:py-8 lg:text-xl"
