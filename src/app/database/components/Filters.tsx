@@ -41,7 +41,7 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
   }
 
   return (
-    <div className="container bg-card p-2 rounded shadow grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6 md:p-4">
+    <div className="container bg-card p-4 rounded shadow grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
       <Select
         onValueChange={(value) => onSearch({ Cidade: value })}
         defaultValue={getCityDefaultValue()}

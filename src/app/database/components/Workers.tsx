@@ -23,7 +23,7 @@ export default function Workers() {
   return isFetching ? (
     <Loading />
   ) : (
-    <div className="space-y-4 md:space-y-8">
+    <div className="space-y-8">
       <Filters jobs={getUniqueJobs()} cities={getUniqueCities()} />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {displayedWorkers.map((worker) => (

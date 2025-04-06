@@ -6,7 +6,7 @@ import Workers from "./components/Workers";
 
 export default function Page() {
   return (
-    <div className="container py-8 space-y-4 md:space-y-8">
+    <div className="container py-8 space-y-8">
       <h2 className="text-xl font-medium">Banco de Talentos</h2>
       <Suspense fallback={<Loading />}>
         <Workers />
