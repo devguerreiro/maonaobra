@@ -30,14 +30,18 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
     const params = new URLSearchParams(searchParams);
 
     for (const [key, value] of Object.entries(query)) {
-      params.set(key, value);
+      if (value !== "Selecione") {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
     }
 
     replace("?" + new URLSearchParams(params));
   }
 
   return (
-    <div className="container bg-card p-2 rounded shadow space-y-3">
+    <div className="container bg-card p-2 rounded shadow grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6 md:p-4">
       <Select
         onValueChange={(value) => onSearch({ Cidade: value })}
         defaultValue={getCityDefaultValue()}
@@ -46,6 +50,7 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
           <SelectValue placeholder="Cidade" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="Selecione">Selecione</SelectItem>
           {cities.map((city) => (
             <SelectItem key={city} value={city}>
               {city}
@@ -61,6 +66,7 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
           <SelectValue placeholder="Especialidade" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="Selecione">Selecione</SelectItem>
           {jobs.map((job) => (
             <SelectItem key={job} value={job}>
               {job}

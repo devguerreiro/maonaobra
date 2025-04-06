@@ -34,6 +34,7 @@ export default function useUniqueJobs() {
           .every(([key, value]) => worker[key] === value)
       );
     });
+
     setDisplayedWorkers(filteredWorkers);
   }
 
@@ -49,19 +50,20 @@ export default function useUniqueJobs() {
 
       if (searchParams.size > 0) {
         filter(workers);
+      } else {
+        setDisplayedWorkers(workers);
       }
-
-      // minimum delay of 300ms
-      await new Promise((resolve) => {
-        setTimeout(resolve, 300);
-      });
 
       setIsFetching(false);
     });
   }, []);
 
   useEffect(() => {
-    filter(workers);
+    if (searchParams.size > 0) {
+      filter(workers);
+    } else {
+      setDisplayedWorkers(workers);
+    }
   }, [searchParams]);
 
   return {

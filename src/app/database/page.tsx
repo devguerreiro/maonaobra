@@ -23,16 +23,18 @@ export default function Page() {
   }
 
   return (
-    <div className="container py-8 space-y-4">
+    <div className="container py-8 space-y-4 md:space-y-8">
       <h2 className="text-xl font-medium">Banco de Talentos</h2>
       {isFetching ? (
         <LoaderCircle className="mx-auto animate-spin" />
       ) : (
-        <div className="grid grid-cols-1 gap-8">
+        <div className="space-y-4 md:space-y-8">
           <Filters jobs={getUniqueJobs()} cities={getUniqueCities()} />
-          {displayedWorkers.map((worker) => (
-            <WorkerCard key={worker.Contato} worker={worker} />
-          ))}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {displayedWorkers.map((worker) => (
+              <WorkerCard key={worker.Contato} worker={worker} />
+            ))}
+          </div>
         </div>
       )}
     </div>

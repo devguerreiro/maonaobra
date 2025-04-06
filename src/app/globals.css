@@ -125,3 +125,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .offer {
+    @apply h-40 bg-primary text-white text-center text-2xl rounded shadow flex flex-col justify-center items-center gap-4;
+  }
+}
