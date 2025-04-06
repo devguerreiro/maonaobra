@@ -1,5 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { BicepsFlexed, ShieldCheck, TrendingUp } from "lucide-react";
+
+import { buttonVariants } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
 
 export default function Page() {
   return (
@@ -16,7 +19,13 @@ export default function Page() {
             e de <strong>confiança</strong>
           </p>
         </div>
-        <Button className="text-xl w-80 py-8">Conecte-se</Button>
+        <a
+          href="https://wa.me/47991430377?text=Preciso de mão de obra"
+          className={cn(buttonVariants(), "w-80 py-8 text-xl")}
+          target="_blank"
+        >
+          Preciso de mão de obra
+        </a>
       </main>
       <section className="bg-card py-10 space-y-12">
         <h3 className="text-2xl text-center">Aqui você vai encontrar</h3>
