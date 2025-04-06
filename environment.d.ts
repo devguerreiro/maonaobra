@@ -1,8 +1,8 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      GOOGLE_SHEET_URL: string;
-      GOOGLE_SHEET_API_KEY: string;
+      GOOGLE_SHEET_JOBS_URL: string;
+      GOOGLE_SHEET_ENGINEERS_URL: string;
     }
   }
 }
