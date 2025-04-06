@@ -13,6 +13,8 @@ type Data = {
 };
 
 export async function middleware(request: NextRequest) {
+  console.log(request);
+
   const params = request.nextUrl.searchParams;
 
   const response = await fetch(process.env.GOOGLE_SHEET_ENGINEERS_URL, {
