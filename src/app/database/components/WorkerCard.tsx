@@ -27,30 +27,34 @@ export default function WorkerCard({ worker }: Readonly<Props>) {
   }
 
   return (
-    <div className="bg-secondary rounded shadow p-4 space-y-1 relative">
-      <p className="text-base font-medium">{worker.Nome}</p>
-      <div className="text-sm text-muted-foreground">
-        <p>{worker.Especialidade}</p>
-        <p>{worker.Cidade}</p>
-      </div>
-      {worker["Recomendado por"] && (
-        <div className="flex items-center gap-2">
-          <span>{worker["Recomendado por"]}</span>
-          <ShieldCheck className="text-green-500" />
+    <div className="bg-secondary rounded shadow p-4 flex flex-col justify-between gap-6">
+      <div className="relative space-y-2">
+        <p className="text-xl font-medium">{worker.Nome}</p>
+        <div className="text-sm text-muted-foreground">
+          <p>{worker.Especialidade}</p>
+          <p>{worker.Cidade}</p>
         </div>
-      )}
-      <DynamicIcon
-        name={getWorkIcon()}
-        className="text-blue-600 absolute top-4 right-4"
-        size={32}
-      />
-      <a
-        href="https://wa.me/47991430377?text=Olá! Gostaria de contratá-lo"
-        className={cn(buttonVariants(), "mt-4 w-full py-6 text-lg")}
-        target="_blank"
-      >
-        Quero contratá-lo
-      </a>
+        {worker["Recomendado por"] && (
+          <div className="flex items-center gap-2">
+            <span>Recomendado por - {worker["Recomendado por"]}</span>
+            <ShieldCheck className="text-green-500" />
+          </div>
+        )}
+        <DynamicIcon
+          name={getWorkIcon()}
+          className="text-blue-600 absolute top-0 right-0"
+          size={32}
+        />
+      </div>
+      <div className="mt-auto">
+        <a
+          href="https://wa.me/47991430377?text=Olá! Gostaria de contratá-lo"
+          className={cn(buttonVariants(), "w-full py-6 text-lg")}
+          target="_blank"
+        >
+          Quero contratá-lo
+        </a>
+      </div>
     </div>
   );
 }
