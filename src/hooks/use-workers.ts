@@ -42,19 +42,21 @@ export default function useUniqueJobs() {
     setIsFetching(true);
 
     fetch("api/workers").then(async (response) => {
-      const data = (await response.json()) as Data;
+      if (response.ok) {
+        const data = (await response.json()) as Data;
 
-      const workers = data.data;
+        const workers = data.data;
 
-      setWorkers(workers);
+        setWorkers(workers);
 
-      if (searchParams.size > 0) {
-        filter(workers);
-      } else {
-        setDisplayedWorkers(workers);
+        if (searchParams.size > 0) {
+          filter(workers);
+        } else {
+          setDisplayedWorkers(workers);
+        }
+
+        setIsFetching(false);
       }
-
-      setIsFetching(false);
     });
   }, []);
 

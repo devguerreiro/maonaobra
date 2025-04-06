@@ -13,25 +13,28 @@ type Data = {
 };
 
 export async function middleware(request: NextRequest) {
-  console.log(request);
-
   const params = request.nextUrl.searchParams;
 
   const response = await fetch(process.env.GOOGLE_SHEET_ENGINEERS_URL, {
     method: "GET",
   });
-  const data = (await response.json()) as Data;
+  if (response.ok) {
+    const data = (await response.json()) as Data;
 
-  const token = params.get("token");
+    const token = params.get("token");
 
-  const isAllowed =
-    token && data.data.some((engineer) => engineer.Token === token);
-  if (!isAllowed)
-    return NextResponse.redirect(new URL("/forbidden", request.url));
+    const isAllowed =
+      token && data.data.some((engineer) => engineer.Token === token);
+    if (!isAllowed)
+      return NextResponse.redirect(new URL("/forbidden", request.url));
+  }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: "/database",
+  matcher: [
+    "/database",
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };
