@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { buttonVariants } from "@/components/ui/button";
 
-import { WorkerDocument } from "@/app/api/workers/route";
+import { WorkerDocument } from "@/app/appwrite";
 
 type Props = {
   worker: WorkerDocument;

@@ -4,7 +4,7 @@ import useUniqueJobs from "@/hooks/use-workers";
 
 import Loading from "@/components/Loading";
 
-import { WorkerDocument } from "@/app/api/workers/route";
+import { WorkerDocument } from "@/app/appwrite";
 
 import WorkerCard from "./WorkerCard";
 import Filters from "./Filters";
