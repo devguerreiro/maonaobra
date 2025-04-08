@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { WorkerDocument } from "@/app/api/workers/route";
+import { WorkerDocument } from "@/app/appwrite";
 
 type Workers = Array<WorkerDocument>;
 
@@ -26,7 +26,12 @@ export default function useUniqueJobs() {
   useEffect(() => {
     setIsFetching(true);
 
-    fetch("api/workers").then(async (response) => {
+    fetch("api/workers", {
+      cache: "default",
+      headers: {
+        "Cache-Control": "max-age=3600",
+      },
+    }).then(async (response) => {
       if (response.ok) {
         const workers = (await response.json()) as Workers;
 

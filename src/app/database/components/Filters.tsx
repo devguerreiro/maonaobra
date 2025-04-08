@@ -19,11 +19,11 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
   const { replace } = useRouter();
 
   function getCityDefaultValue() {
-    return searchParams.get("Cidade") ?? "";
+    return searchParams.get("city") ?? "";
   }
 
   function getJobDefaultValue() {
-    return searchParams.get("Especialidade") ?? "";
+    return searchParams.get("job") ?? "";
   }
 
   function onSearch(query: Record<string, string>) {
@@ -43,7 +43,7 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
   return (
     <div className="container bg-card p-4 rounded shadow grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6">
       <Select
-        onValueChange={(value) => onSearch({ Cidade: value })}
+        onValueChange={(value) => onSearch({ city: value })}
         defaultValue={getCityDefaultValue()}
       >
         <SelectTrigger className="w-full">
@@ -59,7 +59,7 @@ export default function Filters({ jobs, cities }: Readonly<Props>) {
         </SelectContent>
       </Select>
       <Select
-        onValueChange={(value) => onSearch({ Especialidade: value })}
+        onValueChange={(value) => onSearch({ job: value })}
         defaultValue={getJobDefaultValue()}
       >
         <SelectTrigger className="w-full">
