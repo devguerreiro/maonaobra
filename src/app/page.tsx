@@ -30,7 +30,7 @@ export default function Page() {
           Encontrar mão de obra
         </a>
       </main>
-      <section className="bg-card py-10 space-y-12">
+      <section className="bg-card py-20 space-y-12">
         <h3 className="text-center text-xl lg:text-2xl">O que oferecemos</h3>
         <div className="container grid gap-8 grid-cols-1 lg:grid-cols-3">
           <div className="offer">

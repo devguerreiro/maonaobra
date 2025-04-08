@@ -1,5 +1,3 @@
-import { DynamicIcon } from "lucide-react/dynamic";
-
 import { DataWorker } from "@/hooks/use-workers";
 
 import { cn } from "@/lib/utils";
@@ -12,41 +10,26 @@ type Props = {
 };
 
 export default function WorkerCard({ worker }: Readonly<Props>) {
-  function getWorkIcon() {
-    const job = worker.Especialidade.toLowerCase();
-    if (job.includes("pedreiro")) {
-      return "hammer";
-    } else if (job.includes("construtora")) {
-      return "hard-hat";
-    } else if (job.includes("servente")) {
-      return "drill";
-    } else if (job.includes("mestre")) {
-      return "wrench";
-    }
-    return "paintbrush";
-  }
-
   const workerNumber = worker.Contato.toString().replace(/\D/g, "");
 
   return (
-    <div className="bg-secondary rounded shadow p-4 flex flex-col justify-between gap-6">
+    <div className="bg-card rounded shadow p-4 flex flex-col justify-between gap-6 transition-transform duration-200 hover:scale-110">
       <div className="relative space-y-2">
         <p className="text-xl font-medium">{worker.Nome}</p>
         <div className="text-sm text-muted-foreground">
-          <p>{worker.Especialidade}</p>
+          <p className="font-medium text-base">{worker.Especialidade}</p>
           <p>{worker.Cidade}</p>
         </div>
         {worker["Recomendado por"] && (
-          <div className="w-full flex justify-between items-center gap-2">
-            <span>Recomendado por - {worker["Recomendado por"]}</span>
-            <ShieldCheck className="text-green-500" />
+          <div
+            title="selo de qualificação"
+            role="tooltip"
+            aria-label="selo"
+            aria-roledescription="selo de qualificação"
+          >
+            <ShieldCheck className="absolute top-0 right-0 text-blue-500" />
           </div>
         )}
-        <DynamicIcon
-          name={getWorkIcon()}
-          className="text-blue-600 absolute top-0 right-0"
-          size={32}
-        />
       </div>
       <div className="mt-auto">
         <a
