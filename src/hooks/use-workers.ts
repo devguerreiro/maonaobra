@@ -1,38 +1,23 @@
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-export type DataWorker = {
-  Nome: string;
-  Especialidade: string;
-  Contato: string;
-  Cidade: string;
-  "Recomendado por": string;
-};
+import { WorkerDocument } from "@/app/api/workers/route";
 
-type Data = {
-  data: Array<DataWorker>;
-  currentPage: number;
-  totalPage: number;
-};
+type Workers = Array<WorkerDocument>;
 
 export default function useUniqueJobs() {
   const searchParams = useSearchParams();
 
   const [isFetching, setIsFetching] = useState<boolean | null>(null);
 
-  const [workers, setWorkers] = useState<Array<DataWorker>>([]);
-  const [displayedWorkers, setDisplayedWorkers] = useState<Array<DataWorker>>(
-    []
-  );
+  const [workers, setWorkers] = useState<Workers>([]);
+  const [displayedWorkers, setDisplayedWorkers] = useState<Workers>([]);
 
-  function filter(base: Array<DataWorker>) {
+  function filter(base: Workers) {
     const filteredWorkers = base.filter((worker) => {
-      return (
-        searchParams
-          .entries()
-          // @ts-expect-error dynamic filter
-          .every(([key, value]) => key === "token" || worker[key] === value)
-      );
+      return searchParams
+        .entries()
+        .every(([key, value]) => key === "token" || worker[key] === value);
     });
 
     setDisplayedWorkers(filteredWorkers);
@@ -41,11 +26,9 @@ export default function useUniqueJobs() {
   useEffect(() => {
     setIsFetching(true);
 
-    fetch("api/workers", { cache: "force-cache" }).then(async (response) => {
+    fetch("api/workers").then(async (response) => {
       if (response.ok) {
-        const data = (await response.json()) as Data;
-
-        const workers = data.data;
+        const workers = (await response.json()) as Workers;
 
         setWorkers(workers);
 
